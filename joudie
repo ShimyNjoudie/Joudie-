@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday - Hello Kitty Theme</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #FFD1DC;
+            color: #D40000;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 10px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #FF69B4;
+            text-align: center;
+            margin-top: 20px;
+            max-width: 90%;
+        }
+        .fireworks {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #FF69B4;
+            border: none;
+            cursor: pointer;
+            margin-top: 10%;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn" onclick="startCelebration()">Click Me</button>
+    <div class="container" id="celebration">
+        <h1>Happy Birthday Joudie!</h1>
+        <div class="card">
+            <p id="message">Before I met you, my life felt like darkness. When I talk to you, I feel like I still have a heart, like I still exist. I love you and wish you always the best. Happy birthday, Joudie! I hope you always stay as beautiful as you are.</p>
+            <p id="age"></p>
+            <p id="timer"></p>
+        </div>
+    </div>
+    <audio id="birthdaySong" src="b.mp3"></audio>
+    <canvas class="fireworks"></canvas>
+    
+    <script>
+        function calculateAge(birthDate) {
+            let now = new Date();
+            let birth = new Date(birthDate);
+            let age = now.getFullYear() - birth.getFullYear();
+            let months = now.getMonth() - birth.getMonth();
+            let days = now.getDate() - birth.getDate();
+            if (days < 0) {
+                months--;
+                days += 30;
+            }
+            if (months < 0) {
+                age--;
+                months += 12;
+            }
+            return `${age} years, ${months} months, and ${days} days`;
+        }
+        
+        function startCelebration() {
+            document.querySelector('.btn').style.display = 'none';
+            document.getElementById('celebration').style.display = 'flex';
+            document.getElementById('birthdaySong').play();
+            document.getElementById('age').innerText = `Your age now: ${calculateAge('2007-02-07')}`;
+        }
+    </script>
+</body>
+</html>
